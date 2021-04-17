@@ -11,7 +11,7 @@ public class AppDialog {
     private static Dialog mDialog = null;
 
     public static void createDialogRegister(Context context, OnListenerDataRegister onListenerDataRegister){
-        mDialog = new Dialog(context, R.style.Theme_AppCompat_Light_Dialog);
+        mDialog = new Dialog(context,R.style.ThemeOverlay_AppCompat_Dialog_Alert);
         mDialog.setContentView(R.layout.layout_dialog_register);
 
         EditText edtUser = mDialog.findViewById(R.id.editTextUserName);
@@ -39,6 +39,7 @@ public class AppDialog {
             }
         });
 
+        mDialog.show();
     }
 
 }
