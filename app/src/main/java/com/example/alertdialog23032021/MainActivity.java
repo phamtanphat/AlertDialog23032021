@@ -25,10 +25,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Bạn có thông báo mới");
-                builder.setMessage("Có phiên bản update mới");
+                builder.setTitle("Hãy chọn 1 con vật yêu thích");
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setCancelable(false);
+
+                // single choice
+
+                String [] arrAnimals = {"Mèo","Chó","Rùa","Gà","Vịt"};
+
+                builder.setSingleChoiceItems(arrAnimals, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int position) {
+                        Toast.makeText(MainActivity.this, arrAnimals[position], Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -36,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
-                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Bạn chọn không", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//
+//                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(MainActivity.this, "Bạn chọn không", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
                 builder.setNeutralButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
