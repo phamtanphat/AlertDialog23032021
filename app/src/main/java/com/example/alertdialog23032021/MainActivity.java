@@ -7,6 +7,7 @@ import android.app.AlertDialog.Builder;
 import android.app.Person;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,18 +33,31 @@ public class MainActivity extends AppCompatActivity {
                 // single choice
 
                 String [] arrAnimals = {"Mèo","Chó","Rùa","Gà","Vịt"};
-
-                builder.setSingleChoiceItems(arrAnimals, -1, new DialogInterface.OnClickListener() {
+                boolean [] arrChecked = {false,false,false,false,false};
+//                builder.setSingleChoiceItems(arrAnimals, -1, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int position) {
+//                        Toast.makeText(MainActivity.this, arrAnimals[position], Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+                builder.setMultiChoiceItems(arrAnimals, arrChecked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int position) {
-                        Toast.makeText(MainActivity.this, arrAnimals[position], Toast.LENGTH_SHORT).show();
+                    public void onClick(DialogInterface dialogInterface, int i, boolean b) {
+
                     }
                 });
 
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(MainActivity.this, "Bạn chọn có", Toast.LENGTH_SHORT).show();
+                        String animals = "";
+                        for (int j = 0; j < arrChecked.length ; j++) {
+                            if (arrChecked[j]){
+                                animals += arrAnimals[j] + ",";
+                            }
+                        }
+                        animals = animals.substring(0 , animals.length() -1 );
+                        Toast.makeText(MainActivity.this, "Bạn đã chọn " + animals, Toast.LENGTH_SHORT).show();
 
                     }
                 });
